@@ -148,11 +148,27 @@ namespace QRMenu.Controllers
             if (company != null)
             {
                 company.StateId = 0;
-                int a = 3;
-
                 _context.Companies.Update(company);
+                IQueryable<Restaurant> restaurants = _context.Restaurants.Where(r => r.CompanyId == id);
+                foreach (Restaurant restaurant in restaurants)
+                {
+                    restaurant.StateId = 0;
+                    _context.Restaurants.Update(restaurant);
+                    IQueryable<Category> categories = _context.Categories.Where(c => c.RestaurantId == restaurant.Id);
+                    foreach (Category category in categories)
+                    {
+                        category.StateId = 0;
+                        _context.Categories.Update(category);
+                        IQueryable<Food> foods = _context.Foods.Where(f => f.CategoryId == category.Id);
+                        foreach (Food food in foods)
+                        {
+                            food.StateId = 0;
+                            _context.Foods.Update(food);
+                        }
+                    }
+                }
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
