@@ -148,6 +148,7 @@ namespace QRMenu.Controllers
             if (company != null)
             {
                 company.StateId = 0;
+                int a = 3;
 
                 _context.Companies.Update(company);
             }
