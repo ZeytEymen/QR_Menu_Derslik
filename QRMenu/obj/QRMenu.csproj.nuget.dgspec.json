@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/derslik1-0/Projects/QRMenu/QRMenu/QRMenu.csproj": {}
+    "/Users/derslik1-0/Projects/gitProjesi/QRMenu/QRMenu.csproj": {}
   },
   "projects": {
-    "/Users/derslik1-0/Projects/QRMenu/QRMenu/QRMenu.csproj": {
+    "/Users/derslik1-0/Projects/gitProjesi/QRMenu/QRMenu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/derslik1-0/Projects/QRMenu/QRMenu/QRMenu.csproj",
+        "projectUniqueName": "/Users/derslik1-0/Projects/gitProjesi/QRMenu/QRMenu.csproj",
         "projectName": "QRMenu",
-        "projectPath": "/Users/derslik1-0/Projects/QRMenu/QRMenu/QRMenu.csproj",
+        "projectPath": "/Users/derslik1-0/Projects/gitProjesi/QRMenu/QRMenu.csproj",
         "packagesPath": "/Users/derslik1-0/.nuget/packages/",
-        "outputPath": "/Users/derslik1-0/Projects/QRMenu/QRMenu/obj/",
+        "outputPath": "/Users/derslik1-0/Projects/gitProjesi/QRMenu/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/derslik1-0/.nuget/NuGet/NuGet.Config"
