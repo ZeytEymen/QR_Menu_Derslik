@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QRMenu.Data;
 
@@ -11,9 +12,10 @@ using QRMenu.Data;
 namespace QRMenu.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240308081045_remuser")]
+    partial class remuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,25 +225,10 @@ namespace QRMenu.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RestaurantUser", b =>
-                {
-                    b.Property<int>("RestaurantsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RestaurantsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("RestaurantUser");
-                });
-
             modelBuilder.Entity("QRMenu.Models.Category", b =>
                 {
                     b.HasOne("QRMenu.Models.Restaurant", "Restaurant")
-                        .WithMany()
+                        .WithMany("Categories")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -325,24 +312,14 @@ namespace QRMenu.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("RestaurantUser", b =>
-                {
-                    b.HasOne("QRMenu.Models.Restaurant", null)
-                        .WithMany()
-                        .HasForeignKey("RestaurantsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("QRMenu.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("QRMenu.Models.Company", b =>
                 {
                     b.Navigation("Restaurants");
+                });
+
+            modelBuilder.Entity("QRMenu.Models.Restaurant", b =>
+                {
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

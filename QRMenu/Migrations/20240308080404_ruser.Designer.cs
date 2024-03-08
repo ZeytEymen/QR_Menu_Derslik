@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QRMenu.Data;
 
@@ -11,9 +12,10 @@ using QRMenu.Data;
 namespace QRMenu.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240308080404_ruser")]
+    partial class ruser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,6 +174,21 @@ namespace QRMenu.Migrations
                     b.ToTable("Restaurants");
                 });
 
+            modelBuilder.Entity("QRMenu.Models.RestaurantUser", b =>
+                {
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RestaurantId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RestaurantUsers");
+                });
+
             modelBuilder.Entity("QRMenu.Models.State", b =>
                 {
                     b.Property<byte>("Id")
@@ -223,25 +240,10 @@ namespace QRMenu.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RestaurantUser", b =>
-                {
-                    b.Property<int>("RestaurantsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RestaurantsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("RestaurantUser");
-                });
-
             modelBuilder.Entity("QRMenu.Models.Category", b =>
                 {
                     b.HasOne("QRMenu.Models.Restaurant", "Restaurant")
-                        .WithMany()
+                        .WithMany("Categories")
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -306,6 +308,25 @@ namespace QRMenu.Migrations
                     b.Navigation("State");
                 });
 
+            modelBuilder.Entity("QRMenu.Models.RestaurantUser", b =>
+                {
+                    b.HasOne("QRMenu.Models.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QRMenu.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("QRMenu.Models.User", b =>
                 {
                     b.HasOne("QRMenu.Models.Company", "Company")
@@ -325,24 +346,14 @@ namespace QRMenu.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("RestaurantUser", b =>
-                {
-                    b.HasOne("QRMenu.Models.Restaurant", null)
-                        .WithMany()
-                        .HasForeignKey("RestaurantsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("QRMenu.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("QRMenu.Models.Company", b =>
                 {
                     b.Navigation("Restaurants");
+                });
+
+            modelBuilder.Entity("QRMenu.Models.Restaurant", b =>
+                {
+                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

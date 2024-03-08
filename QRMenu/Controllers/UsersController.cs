@@ -154,7 +154,7 @@ namespace QRMenu.Controllers
         {
             if (_context.Users == null)
             {
-                return Problem("Entity set 'ApplicationContext.User'  is null.");
+                return Problem("Entity set 'ApplicationContext.Users'  is null.");
             }
             var user = await _context.Users.FindAsync(id);
             if (user != null)
@@ -169,25 +169,6 @@ namespace QRMenu.Controllers
         private bool UserExists(int id)
         {
           return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-        public ViewResult LogIn()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public RedirectToActionResult LogIn(string userName, string passWord)
-        {
-            Models.User? appUser = _context.Users!.Where(u => u.UserName == userName && u.PassWord == passWord && u.StateId == 1).FirstOrDefault();
-
-            if (appUser==null)
-            {
-                //hata
-                return RedirectToAction("LogIn");
-            }
-            HttpContext.Session.SetInt32("userId", appUser.Id);
-            return RedirectToAction("Index", "Foods");
         }
     }
 }

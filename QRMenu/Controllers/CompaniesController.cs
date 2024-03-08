@@ -150,10 +150,10 @@ namespace QRMenu.Controllers
                 company.StateId = 0;
                 _context.Companies.Update(company);
                 IQueryable<Restaurant> restaurants = _context.Restaurants.Where(r => r.CompanyId == id);
-                RestaurantsController restaurantsController = new RestaurantsController(_context);
+                //RestaurantsController restaurantsController = new RestaurantsController(_context);
                 foreach (Restaurant restaurant in restaurants)
                 {
-                    restaurantsController.DeleteRestaurant(restaurant.Id);
+                    //restaurantsController.DeleteRestaurant(restaurant.Id);
                     restaurant.StateId = 0;
                     _context.Restaurants.Update(restaurant);
                     IQueryable<Category> categories = _context.Categories.Where(c => c.RestaurantId == restaurant.Id);

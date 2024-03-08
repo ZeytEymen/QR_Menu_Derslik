@@ -19,6 +19,8 @@ namespace QRMenu.Models
         public State? State { get; set; }
         [ForeignKey("CompanyId")]
         public Company? Company { get; set; }
+
+        public List<Restaurant>? Restaurants { get; set; }
     }
 }
 

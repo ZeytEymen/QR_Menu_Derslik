@@ -80,7 +80,7 @@ namespace QRMenu.Controllers
                 return NotFound();
             }
 
-            var restaurant = await _context.Restaurants.FindAsync(id);
+            var restaurant = _context.Restaurants.Include(r => r.Users).Where(r => r.Id == id && r.Users.Where(u => u.Id == HttpContext.Session.GetInt32("userId")).Any() == true).FirstOrDefault();
             if (restaurant == null)
             {
                 return NotFound();
@@ -147,18 +147,6 @@ namespace QRMenu.Controllers
             return View(restaurant);
         }
 
-        internal void DeleteRestaurant(int id)
-        {
-            var restaurant = _context.Restaurants.Find(id);
-            if (restaurant != null)
-            {
-                restaurant.StateId = 0;
-                _context.Restaurants.Update(restaurant);
-            }
-
-            _context.SaveChanges();
-        }
-
         // POST: Restaurants/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -168,7 +156,13 @@ namespace QRMenu.Controllers
             {
                 return Problem("Entity set 'ApplicationContext.Restaurants'  is null.");
             }
-            DeleteRestaurant(id);
+            var restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant != null)
+            {
+                _context.Restaurants.Remove(restaurant);
+            }
+            
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

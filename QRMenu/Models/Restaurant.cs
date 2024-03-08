@@ -19,7 +19,7 @@ namespace QRMenu.Models
         [ForeignKey("CompanyId")]
         public Company? Company { get; set; }
 
-        public List<Category>? Categories { get; set; }
+        public List<User>? Users { get; set; }
     }
 }
 
