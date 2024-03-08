@@ -64,6 +64,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Restaurants/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Restaurants/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudHMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Restaurants/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudHMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Restaurants/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudHMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Restaurants/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudHMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/derslik1-0/Projects/gitProjesi/QRMenu/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
