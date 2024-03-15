@@ -1,18 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QRMenu.Data;
 
 namespace QRMenu;
 
 public class Program
 {
+    public static string abc;
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-        builder.Services.AddDbContext<Data.ApplicationContext>(options =>
+        builder.Services.AddDbContext<ApplicationContext>(options =>
                options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDatabase")));
-
         builder.Services.AddSession();
         var app = builder.Build();
 

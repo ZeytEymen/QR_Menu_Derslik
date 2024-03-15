@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+
 namespace QRMenu.Models
 {
     public class Food
@@ -9,6 +10,7 @@ namespace QRMenu.Models
         public int Id { get; set; }
         [StringLength(100, MinimumLength = 2)]
         [Column(TypeName = "nvarchar(100)")]
+        [DisplayName("İsim")]
         public string Name { get; set; } = "";
         [Range(0, float.MaxValue)]
         public float Price { get; set; }
@@ -21,6 +23,11 @@ namespace QRMenu.Models
         public int CategoryId { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public Category? Category { get; set; }
+        [NotMapped]
+        public IFormFile? Picture { get; set; }
+        [Column(TypeName = "image")]
+        public byte[]? Image { get; set; }
+        public string? FileData { get; set; }
     }
 }
 

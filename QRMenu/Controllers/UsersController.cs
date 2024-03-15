@@ -34,6 +34,8 @@ namespace QRMenu.Controllers
                 return NotFound();
             }
 
+            
+
             var user = await _context.Users
                 .Include(u => u.Company)
                 .Include(u => u.State)

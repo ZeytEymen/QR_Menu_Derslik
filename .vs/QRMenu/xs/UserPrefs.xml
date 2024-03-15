@@ -1,28 +1,14 @@
 ﻿<Properties StartupConfiguration="{EE92C6B1-0B2D-4A9D-9163-253C0B762E3F}|Default">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="QRMenu/Controllers/CompaniesController.cs">
-    <Files>
-      <File FileName="QRMenu/Controllers/CompaniesController.cs" Line="166" Column="50" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="QRMenu">
-            <Node name="QRMenu">
-              <Node name="Controllers">
-                <Node name="CompaniesController.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
+        <State name="__root__" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

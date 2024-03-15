@@ -21,7 +21,6 @@ namespace QRMenu.Controllers
         {
             IQueryable<Food> foods = _context.Foods!;
             int? userId = HttpContext.Session.GetInt32("userId");
-
             if (userId == null)
             {
                 foods = foods.Where(f => f.StateId == 1);
@@ -43,7 +42,9 @@ namespace QRMenu.Controllers
 
         public ViewResult Create()
         {
+            HttpContext.Session.LCID
             ViewData["StateId"] = new SelectList(_context.Set<State>(), "Id", "Name");
+            ViewData["NameLabel"] = _context.Strings.Where(s => s.LanguageCode = HttpContext.Session.LCID && s.Id == "NameLabel").FirstOrDefault().Value;
             return View();
         }
 
@@ -51,10 +52,28 @@ namespace QRMenu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind("Id,Name,Price,Description,StateId")] Food food)
         {
+            FileStream fileStream;
+
             if (ModelState.IsValid)
             {
+                if (food.Picture != null)
+                {
+                    MemoryStream memoryStream = new MemoryStream();
+                    food.Picture.CopyTo(memoryStream);
+                    memoryStream.Flush();
+                    food.Image = memoryStream.ToArray();
+                    memoryStream.Close();
+                }
+                if (food.FileData != null)
+                {
+                    food.Image = Convert.FromBase64String(food.FileData);
+                }
                 _context.Add(food);
                 _context.SaveChanges();
+                fileStream = new FileStream(food.Id.ToString() + ".jpg", FileMode.CreateNew);
+                
+                //food.Picture.CopyTo(fileStream);
+                //fileStream.Close();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["StateId"] = new SelectList(_context.Set<State>(), "Id", "Name", food.StateId);
